@@ -6,21 +6,20 @@ python:
 
 install:
   - pip install twine
-  - pip install -e tdvt/
 
 script:
   - python main/test_main.py
   - python secondary/test_secondary.py
 
 deploy:
-  if: tag =~ tdvt AND branch = master
+  if: tag =~ main AND branch = master
   script:
     - cd tdvt && python setup.py sdist
-    - twine upload --repository-url DEV_PYPI tdvt/dist/*
-    - twine upload --repository-url PRD_PYPI tdvt/dist/*
+    - twine upload --repository-url DEV_PYPI main/dist/*
+    # - twine upload --repository-url PRD_PYPI tdvt/dist/*
 
-  if: tag =~ packaging AND branch = master
+  if: tag =~ secondary AND branch = master
     script:
-    - cd packaging && python setup.py sdist
-    - twine upload --repository-url DEV_PYPI packaging/dist/*
-    - twine upload --repository-url PRD_PYPI packaging/dist/*
+    - cd secondary && python setup.py sdist
+    - twine upload --repository-url DEV_PYPI secondary/dist/*
+    # - twine upload --repository-url PRD_PYPI secondary/dist/*
