@@ -8,7 +8,7 @@ class TestMain(unittest.TestCase):
         self.assertEqual(main(), 'Hello')
 
     def test_main_doesnt_say_bye(self):
-        self.assertNotEqual(main(), 'Bye!')
+        self.assertNotEqual(main(), 'Bye')
 
 
 if __name__ == "__main__":
