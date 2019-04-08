@@ -1,0 +1,26 @@
+language: python
+python:
+  - "3.4"
+  - "3.5"
+  - "3.6"
+
+install:
+  - pip install twine
+  - pip install -e tdvt/
+
+script:
+  - python main/test_main.py
+  - python secondary/test_secondary.py
+
+deploy:
+  if: tag =~ tdvt AND branch = master
+  script:
+    - cd tdvt && python setup.py sdist
+    - twine upload --repository-url DEV_PYPI tdvt/dist/*
+    - twine upload --repository-url PRD_PYPI tdvt/dist/*
+
+  if: tag =~ packaging AND branch = master
+    script:
+    - cd packaging && python setup.py sdist
+    - twine upload --repository-url DEV_PYPI packaging/dist/*
+    - twine upload --repository-url PRD_PYPI packaging/dist/*
