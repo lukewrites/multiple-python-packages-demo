@@ -7,12 +7,9 @@ python:
 install:
   - pip install twine
 
-jobs:
-  include:
-    stage: test
-    script:
-      python main/main/test_main.py
-      python secondary/secondary/test_secondary.py
+script:
+  - python main/main/test_main.py
+  - python secondary/secondary/test_secondary.py
 
     # stage: deploy
     #   if: tag =~ main AND branch = master
