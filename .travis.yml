@@ -10,7 +10,6 @@ script:
   - python secondary/secondary/test_secondary.py
 
 before_deploy:
-  provider: script
   script: bash before_deploy.sh
 
 deploy:
