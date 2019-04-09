@@ -1,3 +1,5 @@
+language: python
+
 stages:
   - name: test
     python:
@@ -9,6 +11,7 @@ stages:
       - python secondary/secondary/test_secondary.py
   - name: deploy
       if: tag =~ /^(main)
+      python: "3.4"
       provider: pypi
       user: TWINE_USERNAME
       password: TWINE_PASSWORD
@@ -17,6 +20,7 @@ stages:
         all_branches: true
   - name: deploy
       if: tag =~ /^(secondary)
+      python: "3.4"
       provider: pypi
       user: TWINE_USERNAME
       password: TWINE_PASSWORD
