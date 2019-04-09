@@ -14,9 +14,21 @@ jobs:
       script:
         - python main/main/test_main.py
         - python secondary/secondary/test_secondary.py
-    - stage: deploy
+    - stage: deploy-main
+      if: tag =~ /^(main)
       python: 3.4
-      provider: script
-      script: bash deploy.sh DEV_PYPI
+      provider: pypi
+      user: TWINE_USERNAME
+      password: TWINE_PASSWORD
+      server: DEV_PYPI
+      on:
+        all_branches: true
+    - stage: deploy-secondary
+      if: tag =~ /^(secondary)
+      python: 3.4
+      provider: pypi
+      user: TWINE_USERNAME
+      password: TWINE_PASSWORD
+      server: DEV_PYPI
       on:
         all_branches: true
