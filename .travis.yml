@@ -9,9 +9,11 @@ script:
   - python main/main/test_main.py
   - python secondary/secondary/test_secondary.py
 
+before_deploy:
+  provider: script
+  script: bash before_deploy.sh
 
 deploy:
-  script: bash before_deploy.sh
   provider: pypi
   user: TWINE_USERNAME
   password: TWINE_PASSWORD
