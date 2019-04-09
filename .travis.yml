@@ -14,8 +14,6 @@ script:
 
 after_success:
   - echo "Test Success - Branch($TRAVIS_BRANCH) Pull Request($TRAVIS_PULL_REQUEST) Tag($TRAVIS_TAG)"
-
-deploy:
     if tag =~ main AND branch = master fi
       echo "this is tagged master@!"
 
