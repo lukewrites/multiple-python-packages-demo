@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 if [[ "$TRAVIS_TAG" =~ master ]]; then
     cd master
     python setup.py sdist

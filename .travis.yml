@@ -11,4 +11,4 @@ script:
   - python secondary/secondary/test_secondary.py
 
 on_success:
-  - script: ./deploy.sh
+  - script: bash deploy.sh
