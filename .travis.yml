@@ -11,9 +11,9 @@ script:
 
 before_deploy:
   - bash before_deploy.sh
+  - pwd
 
 deploy:
-  - pwd
   - provider: pypi
     user: TWINE_USERNAME
     password: TWINE_PASSWORD
