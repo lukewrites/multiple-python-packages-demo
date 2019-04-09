@@ -2,26 +2,13 @@ language: python
 
 python:
   - "3.4"
-  - "3.5"
 
 install:
   - pip install twine
 
-jobs:
-  include:
-    - stage: test
-      script: python main/main/test_main.py && python secondary/secondary/test_secondary.py
-    - stage: deploy-main
-      on:
-        condition: $TRAVIS_TAG =~ /^(main)
-        script: ls main/
+script:
+  - python main/main/test_main.py
+  - python secondary/secondary/test_secondary.py
 
-
-# script:
-#   - python main/main/test_main.py
-#   - python secondary/secondary/test_secondary.py
-
-# after_success:
-#   echo tag
-#   if tag =~ /^(main)
-#     ls main/
+on_success:
+  - script: ./deploy.sh
