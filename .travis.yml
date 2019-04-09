@@ -10,5 +10,4 @@ install:
 script:
   - python main/main/test_main.py
   - python secondary/secondary/test_secondary.py
-  - echo $TRAVIS_TAG
-  - ls main/
+  - if [[ $TRAVIS_TAG =~ main ]] ls main/
