@@ -14,7 +14,7 @@ script:
 
 after_success:
   - echo "$TRAVIS_TAG"
-    if "$TRAVIS_TAG" =~ main fi
+    if [[ "$TRAVIS_TAG" =~ main ]]
       ls main/
 
     if tag =~ secondary fi
