@@ -5,22 +5,21 @@ python:
 
 stages:
   - name: test
-    script:
-      - python main/main/test_main.py
-      - python secondary/secondary/test_secondary.py
-  - name: deploy
-      if: tag =~ /^(main)
-      provider: pypi
-      user: TWINE_USERNAME
-      password: TWINE_PASSWORD
-      server: DEV_PYPI
-      on:
-        all_branches: true
-  - name: deploy
-      if: tag =~ /^(secondary)
-      provider: pypi
-      user: TWINE_USERNAME
-      password: TWINE_PASSWORD
-      server: DEV_PYPI
-      on:
-        all_branches: true
+    script: python main/main/test_main.py
+    script: python secondary/secondary/test_secondary.py
+  - name: deploy-main
+    if: (tag =~ /^(main))
+    provider: pypi
+    user: TWINE_USERNAME
+    password: TWINE_PASSWORD
+    server: DEV_PYPI
+    on:
+      all_branches: true
+  - name: deploy-secondary
+    if: tag =~ /^(secondary)
+    provider: pypi
+    user: TWINE_USERNAME
+    password: TWINE_PASSWORD
+    server: DEV_PYPI
+    on:
+      all_branches: true
