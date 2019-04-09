@@ -9,14 +9,15 @@ script:
   - python main/main/test_main.py
   - python secondary/secondary/test_secondary.py
 
-before_deploy:
-  - bash before_deploy.sh
 
 deploy:
+  script: bash before_deploy.sh
   provider: pypi
   user: TWINE_USERNAME
   password: TWINE_PASSWORD
   server: DEV_PYPI
+  distribution: sdist
+  skip_existing: true
   on:
     tags: true
     all_branches: true
