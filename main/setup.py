@@ -1,14 +1,13 @@
 import setuptools
 
 setuptools.setup(
-    name="secondary-lukewrites",
+    name="primary-lukewrites",
     version="0.0.1",
     author="Luke Petschauer",
     author_email="lukewrites@github.com",
-    description="A secondary example package that is silly.",
-    long_description="A secondary example package that is silly.",
-    long_description_content_type="text/markdown",
-    url="https://github.com/pypa/sampleproject",
+    description="A primary example package that is silly.",
+    long_description="A primary example package that is silly.",
+    url="https://github.com/lukewrites/silly-package/primary",
     packages=setuptools.find_packages(),
     classifiers=[
         "Programming Language :: Python :: 3",
