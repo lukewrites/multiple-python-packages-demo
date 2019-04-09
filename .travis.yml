@@ -15,7 +15,9 @@ script:
 after_success:
   - echo "Test Success - Branch($TRAVIS_BRANCH) Pull Request($TRAVIS_PULL_REQUEST) Tag($TRAVIS_TAG)"
     if branch =~ develop fi
-      cd main/ && ls
+      cd main/main && python setup.py sdist
+      ls
+      twine upload repository-url DEV_PYPI dist/*
 
     if tag =~ secondary AND branch = master fi
       echo "this is tagged secondary!"
