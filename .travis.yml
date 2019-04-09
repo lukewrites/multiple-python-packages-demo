@@ -14,13 +14,13 @@ before_deploy:
 
 deploy:
   - pwd
-  provider: pypi
-  user: TWINE_USERNAME
-  password: TWINE_PASSWORD
-  server: DEV_PYPI
-  skip_existing: true
-  skip_cleanup: true
-  on:
-    tags: true
-    all_branches: true
-    python: 3.4
+  - provider: pypi
+    user: TWINE_USERNAME
+    password: TWINE_PASSWORD
+    server: DEV_PYPI
+    skip_existing: true
+    skip_cleanup: true
+    on:
+      tags: true
+      all_branches: true
+      python: 3.4
