@@ -7,17 +7,13 @@ python:
 install:
   - pip install twine
 
+
 jobs:
   include:
     - stage: test
       script:
         - python main/main/test_main.py
         - python secondary/secondary/test_secondary.py
-    - stage: deploy-main-to-pypy
+    - stage: deploy-to-pypi-main
       if: tag =~ main
-      script:
-        - ls main/
-    - stage: deploy-secondary-to-pypy
-      if: tag =~ secondary
-      script:
-      - ls secondary/
+      script: ls main/
