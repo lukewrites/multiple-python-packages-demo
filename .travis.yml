@@ -2,24 +2,22 @@ language: python
 
 python:
   - "3.4"
+  - "3.5"
+  - "3.6"
 
-stages:
-  - name: test
-     - python main/main/test_main.py
-     - python secondary/secondary/test_secondary.py
-  - name: deploy
-    if: (tag =~ /^(main))
-    provider: pypi
-    user: TWINE_USERNAME
-    password: TWINE_PASSWORD
-    server: DEV_PYPI
-    on:
-      all_branches: true
-  - name: deploy-secondary
-    if: tag =~ /^(secondary)
-    provider: pypi
-    user: TWINE_USERNAME
-    password: TWINE_PASSWORD
-    server: DEV_PYPI
-    on:
-      all_branches: true
+script:
+  - python main/main/test_main.py
+  - python secondary/secondary/test_secondary.py
+
+before_deploy:
+  - bash before_deploy.sh
+
+deploy:
+  provider: pypi
+  user: TWINE_USERNAME
+  password: TWINE_PASSWORD
+  server: DEV_PYPI
+  on:
+    tags: true
+    all_branches: true
+    python: 3.4
