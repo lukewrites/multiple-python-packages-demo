@@ -10,5 +10,9 @@ script:
   - python main/main/test_main.py
   - python secondary/secondary/test_secondary.py
 
-on_success:
-  - script: bash deploy.sh
+deploy:
+  skip_cleanup: true
+  provider: script
+  script: bash deploy.sh
+  # on:
+    # branch: master
