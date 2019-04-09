@@ -13,5 +13,5 @@ script:
 
 after_success:
   echo "$TRAVIS_TAG"
-  - if: "$TRAVIS_TAG" =~ /^(main)
+  if: tag =~ /^(main)
     ls main/
