@@ -6,18 +6,16 @@ python:
 install:
   - pip install twine
 
-script:
+before_script:
   - python main/main/test_main.py
   - python secondary/secondary/test_secondary.py
 
-    # stage: deploy
-    #   if: tag =~ main AND branch = master
-    #   script:
-    #     - cd tdvt && python setup.py sdist
-    #     - twine upload --repository-url DEV_PYPI main/dist/*
-    #     # - twine upload --repository-url PRD_PYPI tdvt/dist/*
+script:
+  if: tag =~ main AND branch = master
+    - cd tdvt && python setup.py sdist
+    - twine upload --repository-url DEV_PYPI main/dist/*
+    # - twine upload --repository-url PRD_PYPI tdvt/dist/*
 
-    #     if: tag =~ secondary AND branch = master
-    #       script:
-    #         - cd secondary && python setup.py sdist
-    #         - twine upload --repository-url DEV_PYPI secondary/dist/*
+  if: tag =~ secondary AND branch = master
+    - cd secondary && python setup.py sdist
+    - twine upload --repository-url DEV_PYPI secondary/dist/*
