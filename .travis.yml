@@ -8,27 +8,26 @@ python:
 install:
   - pip install twine
 
-jobs:
-  include:
-    - stage: test
-      script:
-        - python main/main/test_main.py
-        - python secondary/secondary/test_secondary.py
-    - stage: deploy-main
-      if: tag =~ /^(main)
-      python: 3.4
-      provider: pypi
-      user: TWINE_USERNAME
-      password: TWINE_PASSWORD
-      server: DEV_PYPI
-      on:
-        all_branches: true
-    - stage: deploy-secondary
-      if: tag =~ /^(secondary)
-      python: 3.4
-      provider: pypi
-      user: TWINE_USERNAME
-      password: TWINE_PASSWORD
-      server: DEV_PYPI
-      on:
-        all_branches: true
+stages:
+  - name: test
+    script:
+      - python main/main/test_main.py
+      - python secondary/secondary/test_secondary.py
+  - name: deploy
+    if: tag =~ /^(main)
+    python: 3.4
+    provider: pypi
+    user: TWINE_USERNAME
+    password: TWINE_PASSWORD
+    server: DEV_PYPI
+    on:
+      all_branches: true
+  - name: deploy
+    if: tag =~ /^(secondary)
+    python: 3.4
+    provider: pypi
+    user: TWINE_USERNAME
+    password: TWINE_PASSWORD
+    server: DEV_PYPI
+    on:
+      all_branches: true
