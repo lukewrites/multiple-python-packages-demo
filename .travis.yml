@@ -12,9 +12,6 @@ script:
   - python secondary/secondary/test_secondary.py
 
 after_success:
-  - if: main IN "$TRAVIS_TAG"
+  echo "$TRAVIS_TAG"
+  - if main IN "$TRAVIS_TAG"
     ls main/
-  - if: secondary IN "$TRAVIS_TAG"
-    ls secondary/
-  - if: tag
-    echo "$tag"
