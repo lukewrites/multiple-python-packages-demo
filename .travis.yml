@@ -18,5 +18,3 @@ after_success:
     ls secondary/
   - if: tag
     echo "$tag"
-  - if: TRAVIS_TAG
-    echo "$TRAVIS_TAG"
