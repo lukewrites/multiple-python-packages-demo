@@ -10,5 +10,7 @@ install:
 script:
   - python main/main/test_main.py
   - python secondary/secondary/test_secondary.py
-  - if main IN $TRAVIS_TAG
+
+after_success:
+  - if main IN "$TRAVIS_TAG"
     ls main/
