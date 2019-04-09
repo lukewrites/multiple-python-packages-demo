@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-if [[ "$TRAVIS_TAG" =~ master ]]; then
+if [[ "$TRAVIS_TAG" =~ main ]]; then
     cd master
     python setup.py sdist
     ls dist/
