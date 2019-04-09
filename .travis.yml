@@ -13,8 +13,8 @@ script:
 
 
 after_success:
-  - echo "$branch"
-  - if branch =~ master fi
+  - echo "$TRAVIS_TAG"
+    if tag =~ main fi
       ls main/
 
     if tag =~ secondary fi
