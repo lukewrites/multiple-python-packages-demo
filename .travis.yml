@@ -5,9 +5,9 @@ python:
 
 stages:
   - name: test
-    script: python main/main/test_main.py
-    script: python secondary/secondary/test_secondary.py
-  - name: deploy-main
+     - python main/main/test_main.py
+     - python secondary/secondary/test_secondary.py
+  - name: deploy
     if: (tag =~ /^(main))
     provider: pypi
     user: TWINE_USERNAME
