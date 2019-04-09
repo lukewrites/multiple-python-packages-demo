@@ -17,8 +17,8 @@ deploy:
   user: TWINE_USERNAME
   password: TWINE_PASSWORD
   server: DEV_PYPI
-  distribution: sdist
   skip_existing: true
+  skip_cleanup: true
   on:
     tags: true
     all_branches: true
