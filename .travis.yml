@@ -7,15 +7,17 @@ python:
 install:
   - pip install twine
 
-script:
-  - python main/main/test_main.py
-  - python secondary/secondary/test_secondary.py
-
-
-after_success:
-  - echo "$TRAVIS_TAG"
-    if tag =~ main fi
-      ls main/
-
-    if tag =~ secondary fi
-      echo "this is tagged secondary!"
+jobs:
+  include:
+    - stage: test
+      script:
+        - python main/main/test_main.py
+        - python secondary/secondary/test_secondary.py
+    - stage: deploy-main-to-pypy
+      if: tag =~ main
+        script:
+          - ls main/
+    - stage: deploy-secondary-to-pypy
+      if: tag =~ secondary
+        script:
+          - ls secondary/
