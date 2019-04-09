@@ -2,17 +2,21 @@ language: python
 
 python:
   - "3.4"
+  - "3.5"
+  - "3.6"
 
-install:
-  - pip install twine
 
-script:
-  - python main/main/test_main.py
-  - python secondary/secondary/test_secondary.py
-
-deploy:
-  skip_cleanup: true
-  provider: script
-  script: bash deploy.sh DEV_PYPI
-  on:
-    all_branches: true
+jobs:
+  include:
+    - stage: install
+      script: pip install twine
+    - stage: test
+      script:
+        python main/main/test_main.py
+        python secondary/secondary/test_secondary.py
+    - stage: deploy
+      python: 3.4
+      provider: script
+      script: bash deploy.sh DEV_PYPI
+      on:
+        all_branches: true
