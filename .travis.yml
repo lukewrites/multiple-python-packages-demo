@@ -19,7 +19,7 @@ deploy:
     password: TWINE_PASSWORD
     server: DEV_PYPI
     skip_existing: true
-    skip_cleanup: true
+    distributions: "sdist"
     on:
       tags: true
       all_branches: true
