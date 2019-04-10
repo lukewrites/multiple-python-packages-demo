@@ -19,7 +19,7 @@ jobs:
 
    - stage: deploy
      python: 3.4
-     - cd $(bash before_deploy.sh)
+     script: cd $(bash before_deploy.sh)
      deploy:
      - provider: pypi
        user:
