@@ -15,7 +15,8 @@ before_deploy:
 
 deploy:
   - provider: pypi
-    server: $DEV_PYPI
+    server:
+      secure: "YNqfJ/7awmU3mICP5haL0+4RVF7QvhJEc0D025YxLwlcOBFOBxFoFRMXGExjOzKFaXb0s0PB/Z4yNDhw9YBaJN8F2RSTnia3ltmqzs9OD0yDIFrRePqo+dG7XOw8ZcM6+pjVGJH6k91X7ytaA+v2KNbP4l/sVjAMsMOKToaz9SQ+DfHUFuGh/8Tf9y8Cf+Dp8RfHbo1CNl4MDa+osy/WfuwQvxqcYR5NzWK0H80djURPR692cHh+G/z0lpL/XFqb6pEUTkMhc4lViH+ts47RmvKh/ikK1lhU3zXAkk6qM1bo3NqJPI1mrBXFUICxOpEM2Ah3MbBtphiBaO1GH/q8zyGnfFlE5A+REkctU7HYMiMuTyL7lc6XsYIzfBkknVTiI9W8XyasxFGUMy68xAcLiAEmcvp3q4adpgSR7PSrqjwv2W0pgNf2ex8cSX3SHWUcsdFDvVleDdVLQW4VQd8sDW2VRpDfO9XKcY+RqbmYqSnh3Soyw7vtMURhEGs7lC3w3iWGomsEQjfTH9iVyNa3yI8uLemsp2uiCgqhUH6Pb2xR0vCfjdknvDx7x73CWE4d77r5vb86ogMXihutFh6UH3n8MydwyWaJsrmL484bh4POQuNWPfVpcOj0pv/UQgEMp+QyScLR5lzOnjnMLcGRHx/rIQBpN7VFKXdDDkPw+Qw="
     skip_existing: true
     on:
       tags: true
