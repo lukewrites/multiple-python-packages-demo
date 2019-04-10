@@ -11,6 +11,7 @@ script:
 
 before_deploy:
   - cd $(bash before_deploy.sh)
+  - pwd
 
 deploy:
   - provider: pypi
