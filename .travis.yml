@@ -9,14 +9,17 @@ stages:
 script:
   - python main/main/test_main.py
   - python secondary/secondary/test_secondary.py
+
 jobs:
   include:
    - python: 3.4
    - python: 3.5
    - python: 3.6
    - python: 3.7
+
    - stage: deploy
      python: 3.4
+     - cd $(bash before_deploy.sh)
      deploy:
      - provider: pypi
        user:
