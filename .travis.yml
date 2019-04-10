@@ -15,9 +15,7 @@ before_deploy:
 
 deploy:
   - provider: pypi
-    user: TWINE_USERNAME
-    password: TWINE_PASSWORD
-    server: DEV_PYPI
+    server: $DEV_PYPI
     skip_existing: true
     on:
       tags: true
