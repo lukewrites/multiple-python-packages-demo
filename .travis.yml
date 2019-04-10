@@ -17,7 +17,7 @@ deploy:
   - provider: pypi
     user: TWINE_USERNAME
     password: TWINE_PASSWORD
-    server: https://upload.pypi.org/legacy
+    server: https://upload.pypi.org/legacy/
     skip_existing: true
     on:
       tags: true
