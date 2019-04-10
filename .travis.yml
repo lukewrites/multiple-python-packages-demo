@@ -1,27 +1,30 @@
+dist: xenial   # required for Python >= 3.7
 language: python
 
-python:
-  - "3.4"
-  - "3.5"
-  - "3.6"
+stages:
+- test
+- name: deploy
+  if: tag IS present
 
 script:
   - python main/main/test_main.py
   - python secondary/secondary/test_secondary.py
-
-before_deploy:
-  - cd $(bash before_deploy.sh)
-  - pwd
-
-deploy:
-  python: 3.4
-  - provider: pypi
-    user:
-      secure: "bash4A1yPuZfFexH/+FxhdKPs9LloeU0kSLdprgGOejScRB+yt4oGrRzVaQEizh2y074ECCF+41kMwnBXmiMCXP5Sd5i96U4orN5flccXwMZHWo6/hWx50NhgbDuu3d9wdYhvbnQ2DvyPBf1BKwM12iAAn+pfr9MWMSO8rjCpJfxtkq0Sot1VuxGA8nj+rartteUM6vu8knu5qSeY8YSRWRkjzR4DMWzrrII6pfJQY28a+dl89zk8zWkpJxV5BYMNRJPZkI4d/kzi12TurDl90I4fqDQ7ZtXXnB3+f6L43kEGhKw9CATPFQYq2fNEomS8QSnLZ1sECCzcqEm0y2ZWnDfxPEKKmHjgUKNfRxEa/4VoQ0xDoXJQnrIUhgI65i6jhxvV+0RjOOO+W8tyAVDL/Qsv+KBd9h0z6QFn+7epWbPvc0tftcrdx38rRxSZde3OliWVmjmFLT93H4aTNAnxZt2/sWD/LfW/5I/Bp5HAmHQRjQ1EL7FYAjwDOYk23McapGGhN/Jz8zjj9RQyQWh2ld+NGPyFGQWhlbPsjum9NQEkSQLN8Dawd65XqdWVGjOmAn62TU1aAGhuv8xAYJ7SMMzOsMDAq+bJJOjeW/xQ3JjrlWcGmgBGLbuUDYH5d6L8w0ZFUPFHvmoP1XLSWxZx7Yc7pj4FFUvcsm1vjQ8U10="
-    password:
-      secure: "s8xseW9upvpPqy1mA3yVtzIh0wl9VV5FIrFiMT0AHqN/QhRPdpAn/Gv+zhtCEiQbTB57yk2Gf/t+AK6fx2E+EgCwbOQ0TIC3AaJURNOzKQY5hDMCuxA4DsjiT0GRgw+EL+cEEZyx7iL+wajzR2U1Adol7RrOvmi/aDN0NDRPsTbVnAB/sPmotyvyhi5mgxzHsvJSInnaJI3VchbOLcOm0Lqd99N0us/wTqXABquq2Wk5tw1TxTLOLa9R/NR7SzToScmQ5BdwH7ABu5DB9CDr0icgNryXRxYXcqPtKFAFP4mLQE1bTvUW4wu1gC4q8FnMw6kZEiHmPjQ1ynzupbniYYk9ritRliu2vlnasks0YkmAR/HlRhFmt8IFK9rV5Qr3kd8z+Dr03qXB2i/6pCjDp0w2oQmGiTegOLA9YMk51giQbt7GWySUrt822WqAU47HNCWawjsJ3y+XmE0SFbD/dOiz6vZFvFiSN0F8NrsMniSAy7QwQqFi3gcuFbtJ3Tsn6cFo16lAJOOV7VuRFkg9Khm48wXkETZa69cCbxzJVfWOAZlOWt+LPyjWRYH+hskWA9fGc3ZJRUFACFQFbH065vduhvlhkNdC+fzViNa4qPiNey+or/4sIm827o0knkBljLQrp2xOI1WAqd2VVwV1kbWjsRQEfQYUUo2ZyhjH37M="
-    server: https://test.pypi.org/legacy/
-    skip_existing: true
-    on:
-      tags: true
-      all_branches: true
+jobs:
+  include:
+   - python: 3.4
+   - python: 3.5
+   - python: 3.6
+   - python: 3.7
+   - stage: deploy
+     python: 3.4
+     deploy:
+     - provider: pypi
+       user:
+        secure: "bash4A1yPuZfFexH/+FxhdKPs9LloeU0kSLdprgGOejScRB+yt4oGrRzVaQEizh2y074ECCF+41kMwnBXmiMCXP5Sd5i96U4orN5flccXwMZHWo6/hWx50NhgbDuu3d9wdYhvbnQ2DvyPBf1BKwM12iAAn+pfr9MWMSO8rjCpJfxtkq0Sot1VuxGA8nj+rartteUM6vu8knu5qSeY8YSRWRkjzR4DMWzrrII6pfJQY28a+dl89zk8zWkpJxV5BYMNRJPZkI4d/kzi12TurDl90I4fqDQ7ZtXXnB3+f6L43kEGhKw9CATPFQYq2fNEomS8QSnLZ1sECCzcqEm0y2ZWnDfxPEKKmHjgUKNfRxEa/4VoQ0xDoXJQnrIUhgI65i6jhxvV+0RjOOO+W8tyAVDL/Qsv+KBd9h0z6QFn+7epWbPvc0tftcrdx38rRxSZde3OliWVmjmFLT93H4aTNAnxZt2/sWD/LfW/5I/Bp5HAmHQRjQ1EL7FYAjwDOYk23McapGGhN/Jz8zjj9RQyQWh2ld+NGPyFGQWhlbPsjum9NQEkSQLN8Dawd65XqdWVGjOmAn62TU1aAGhuv8xAYJ7SMMzOsMDAq+bJJOjeW/xQ3JjrlWcGmgBGLbuUDYH5d6L8w0ZFUPFHvmoP1XLSWxZx7Yc7pj4FFUvcsm1vjQ8U10="
+       password:
+         secure: "s8xseW9upvpPqy1mA3yVtzIh0wl9VV5FIrFiMT0AHqN/QhRPdpAn/Gv+zhtCEiQbTB57yk2Gf/t+AK6fx2E+EgCwbOQ0TIC3AaJURNOzKQY5hDMCuxA4DsjiT0GRgw+EL+cEEZyx7iL+wajzR2U1Adol7RrOvmi/aDN0NDRPsTbVnAB/sPmotyvyhi5mgxzHsvJSInnaJI3VchbOLcOm0Lqd99N0us/wTqXABquq2Wk5tw1TxTLOLa9R/NR7SzToScmQ5BdwH7ABu5DB9CDr0icgNryXRxYXcqPtKFAFP4mLQE1bTvUW4wu1gC4q8FnMw6kZEiHmPjQ1ynzupbniYYk9ritRliu2vlnasks0YkmAR/HlRhFmt8IFK9rV5Qr3kd8z+Dr03qXB2i/6pCjDp0w2oQmGiTegOLA9YMk51giQbt7GWySUrt822WqAU47HNCWawjsJ3y+XmE0SFbD/dOiz6vZFvFiSN0F8NrsMniSAy7QwQqFi3gcuFbtJ3Tsn6cFo16lAJOOV7VuRFkg9Khm48wXkETZa69cCbxzJVfWOAZlOWt+LPyjWRYH+hskWA9fGc3ZJRUFACFQFbH065vduhvlhkNdC+fzViNa4qPiNey+or/4sIm827o0knkBljLQrp2xOI1WAqd2VVwV1kbWjsRQEfQYUUo2ZyhjH37M="
+       server: https://test.pypi.org/legacy/
+       skip_existing: true
+       on:
+         tags: true
+         all_branches: true
