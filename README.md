@@ -1,2 +1,2 @@
 # silly-package
-https://travis-ci.org/lukewrites/silly-package.svg?branch=master
+[![Build Status](https://travis-ci.org/lukewrites/silly-package.svg?branch=master)](https://travis-ci.org/lukewrites/silly-package)
