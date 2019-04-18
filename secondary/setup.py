@@ -2,7 +2,7 @@ import setuptools
 
 setuptools.setup(
     name="secondary-lukewrites",
-    version="0.0.1",
+    version="0.0.3",
     author="Luke Petschauer",
     author_email="lukewrites@github.com",
     description="A secondary example package that is silly.",
