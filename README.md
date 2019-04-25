@@ -2,9 +2,6 @@
 [![Build Status](https://travis-ci.org/lukewrites/silly-package.svg?branch=master)](https://travis-ci.org/lukewrites/silly-package)
 
 ## What Is This?
-This repo shows you how to have two Python packages in the same repo with automated packaging and uploading to PyPi via Travis CI.
-
-## Background
 Standard practice is for a git repo to have one Python package in it. Most CI/CD tools are built on this assumption. However, in some cases it's necessary to have more than one package in a repo. This repo shows you how you can use Travis CI to package and distribute Python packages from a repo that hosts multiple packages.
 
 ## How It Works
