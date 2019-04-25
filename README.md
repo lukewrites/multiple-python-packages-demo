@@ -26,8 +26,5 @@ stages:
 ```
 If there's a git tag that meets one of those criterion, when we start the deploy stage we `cd` into the directory of that package using the `before_deploy.sh` script. Then packaging runs from there.
 
-## Why Post This
-I hope it saves you some time.
-
 ## If I Did Something Wrong Or You Can Improve This
 Please open a PR!
