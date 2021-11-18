@@ -1,4 +1,4 @@
-# silly-package
+# `multiple-python-packages-demo`
 [![Build Status](https://travis-ci.org/lukewrites/silly-package.svg?branch=master)](https://travis-ci.org/lukewrites/silly-package)
 
 ## What Is This?
